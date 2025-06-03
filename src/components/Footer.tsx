@@ -43,7 +43,17 @@ const Footer = () => {
 
         <div className="border-t border-gray-700 mt-8 pt-8 text-center">
           <div className="flex items-center justify-center gap-2 font-inter text-gray-300">
-            <p>© 2024 Bella Vita. Feito com</p>
+            <p>
+              © 2025 Bella Vita. Feito por{" "}
+              <a
+                href="https://www.cloudsphere.space"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-rose-600 hover:underline"
+              >
+                cloudsphere
+              </a>
+            </p>
             <Heart className="w-4 h-4 text-rose-400 fill-current" />
             <p>para realçar sua beleza.</p>
             <Sparkles className="w-4 h-4 text-gold-400" />
