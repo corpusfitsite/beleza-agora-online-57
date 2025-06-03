@@ -1,4 +1,3 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { MapPin, Phone, Clock, Instagram, Facebook, Mail } from "lucide-react";
@@ -20,8 +19,8 @@ const Contact = () => {
     {
       icon: MapPin,
       title: "Endereço",
-      content: "Rua das Flores, 123 - Vila Madalena, São Paulo - SP",
-      action: "https://maps.google.com"
+      content: "456 Random Street, Random City, RC",
+      action: "https://www.google.com/maps?q=51.508112,-0.075949"
     },
     {
       icon: Clock,
@@ -32,8 +31,8 @@ const Contact = () => {
   ];
 
   const socialLinks = [
-    { icon: Instagram, label: "Instagram", url: "https://instagram.com" },
-    { icon: Facebook, label: "Facebook", url: "https://facebook.com" },
+    { icon: Instagram, label: "Instagram", url: "https://instagram.com/bellavita_oficial" },
+    { icon: Facebook, label: "Facebook", url: "https://facebook.com/bellavita_oficial" },
   ];
 
   return (
@@ -55,8 +54,8 @@ const Contact = () => {
           {/* Contact Information */}
           <div className="lg:col-span-1 space-y-6">
             {contactInfo.map((info, index) => (
-              <Card 
-                key={info.title} 
+              <Card
+                key={info.title}
                 className="hover:shadow-lg transition-shadow duration-300 animate-slide-in-left"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
@@ -70,9 +69,11 @@ const Contact = () => {
                         {info.title}
                       </h3>
                       {info.action ? (
-                        <a 
+                        <a
                           href={info.action}
                           className="font-inter text-gray-600 hover:text-rose-600 transition-colors"
+                          target={info.action.startsWith("http") ? "_blank" : undefined}
+                          rel={info.action.startsWith("http") ? "noopener noreferrer" : undefined}
                         >
                           {info.content}
                         </a>
@@ -96,6 +97,8 @@ const Contact = () => {
                     <a
                       key={social.label}
                       href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="w-10 h-10 bg-gradient-to-br from-rose-500 to-gold-500 rounded-full flex items-center justify-center text-white hover:shadow-lg transition-all duration-300 transform hover:scale-110"
                     >
                       <social.icon className="w-5 h-5" />
@@ -108,20 +111,40 @@ const Contact = () => {
 
           {/* Map and CTA */}
           <div className="lg:col-span-2 space-y-6">
-            {/* Map Placeholder */}
-            <Card className="overflow-hidden animate-fade-in">
-              <div className="relative h-64 lg:h-80 bg-gradient-to-br from-rose-100 to-gold-100">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center">
-                    <MapPin className="w-16 h-16 text-rose-400 mx-auto mb-4" />
-                    <p className="font-inter text-gray-600">
-                      Clique para ver nossa localização no Google Maps
-                    </p>
-                  </div>
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+            {/* Google Maps Embed usando coordenadas (Tower of London) */}
+            <Card className="overflow-hidden animate-fade-in relative h-64 lg:h-80">
+              <iframe
+                src="https://www.google.com/maps?q=51.508112,-0.075949&hl=pt-BR&z=15&output=embed"
+                title="Localização Aleatória - Tower of London"
+                width="100%"
+                height="100%"
+                className="absolute inset-0"
+                style={{ border: 0 }}
+                allowFullScreen={false}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4 pointer-events-none">
+                {/* <MapPin className="w-12 h-12 text-rose-400 mb-2" />
+                <p className="font-inter text-white drop-shadow-lg">
+                  Local aleatório: Tower of London, Londres
+                </p> */}
               </div>
             </Card>
+
+            {/* Botão para abrir o mapa no Google Maps */}
+            <div className="text-center">
+              <a
+                href="https://www.google.com/maps?q=51.508112,-0.075949"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-rose-500 to-gold-500 text-white px-6 py-3 rounded-full font-inter font-medium hover:shadow-lg transition-all duration-300"
+              >
+                <MapPin className="w-5 h-5" />
+                <span>Ver no Google Maps</span>
+              </a>
+            </div>
 
             {/* CTA Card */}
             <Card className="bg-gradient-to-br from-rose-500 to-gold-500 text-white border-0 animate-fade-in">
@@ -133,14 +156,14 @@ const Contact = () => {
                   Agende agora mesmo seu horário e descubra como podemos realçar sua beleza natural.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button 
-                    size="lg" 
+                  <Button
+                    size="lg"
                     className="bg-white text-rose-600 hover:bg-gray-50 px-8 py-4 font-medium transition-all duration-300 transform hover:scale-105"
                   >
                     Agendar pelo WhatsApp
                   </Button>
-                  <Button 
-                    variant="outline" 
+                  <Button
+                    variant="outline"
                     size="lg"
                     className="border-2 border-white text-white hover:bg-white hover:text-rose-600 px-8 py-4 font-medium transition-all duration-300"
                   >
