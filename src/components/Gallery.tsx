@@ -1,4 +1,3 @@
-
 import { Card } from "@/components/ui/card";
 import { Instagram, Heart } from "lucide-react";
 
@@ -6,37 +5,37 @@ const Gallery = () => {
   const galleryImages = [
     {
       id: 1,
-      image: "photo-1649972904349-6e44c42644a7",
+      image: "/images/image7.png",
       caption: "Transformação completa - Corte + Coloração",
       likes: 234
     },
     {
       id: 2,
-      image: "photo-1581091226825-a6a2a5aee158",
+      image: "/images/image8.png",
       caption: "Hidratação profunda - Resultado incrível",
       likes: 189
     },
     {
       id: 3,
-      image: "photo-1721322800607-8c38375eef04",
+      image: "/images/image9.png",
       caption: "Design de sobrancelhas - Olhar renovado",
       likes: 156
     },
     {
       id: 4,
-      image: "photo-1649972904349-6e44c42644a7",
+      image: "/images/image10.png",
       caption: "Manicure artística - Arte nas unhas",
       likes: 278
     },
     {
       id: 5,
-      image: "photo-1581091226825-a6a2a5aee158",
+      image: "/images/image11.png",
       caption: "Corte moderno - Estilo contemporâneo",
       likes: 201
     },
     {
       id: 6,
-      image: "photo-1721322800607-8c38375eef04",
+      image: "/images/image12.png",
       caption: "Noiva radiante - Dia especial perfeito",
       likes: 342
     }
@@ -59,18 +58,22 @@ const Gallery = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {galleryImages.map((item, index) => (
-            <Card 
-              key={item.id} 
+            <Card
+              key={item.id}
               className="group overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1 animate-fade-in"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="relative overflow-hidden">
-                <img 
-                  src={`https://images.unsplash.com/${item.image}?w=400&h=400&fit=crop`}
+                <img
+                  src={item.image} // ← usa diretamente /images/imageX.png
                   alt={item.caption}
                   className="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-110"
+                  onError={(e) => {
+                    // Caso falhe, exibe placeholder opcional
+                    (e.currentTarget as HTMLImageElement).src = "/images/placeholder.png";
+                  }}
                 />
-                
+
                 {/* Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="absolute bottom-4 left-4 right-4">
