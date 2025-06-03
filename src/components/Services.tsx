@@ -1,4 +1,3 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Star, Clock, Sparkles } from "lucide-react";
@@ -10,7 +9,7 @@ const Services = () => {
       description: "Cortes modernos e personalizados com escova profissional",
       price: "A partir de R$ 80",
       duration: "1h - 1h30",
-      image: "photo-1649972904349-6e44c42644a7",
+      image: "/images/image1.png",  // ✔️ Caminho direto em public/images
       featured: false
     },
     {
@@ -18,7 +17,7 @@ const Services = () => {
       description: "Técnicas avançadas de coloração com produtos de alta qualidade",
       price: "A partir de R$ 150",
       duration: "2h - 3h",
-      image: "photo-1581091226825-a6a2a5aee158",
+      image: "/images/image2.png",
       featured: true
     },
     {
@@ -26,7 +25,7 @@ const Services = () => {
       description: "Tratamentos intensivos para cabelos danificados e ressecados",
       price: "A partir de R$ 120",
       duration: "1h30 - 2h",
-      image: "photo-1721322800607-8c38375eef04",
+      image: "/images/image3.png",
       featured: false
     },
     {
@@ -34,7 +33,7 @@ const Services = () => {
       description: "Cuidado completo para suas unhas com esmaltação perfeita",
       price: "A partir de R$ 45",
       duration: "45min - 1h",
-      image: "photo-1649972904349-6e44c42644a7",
+      image: "/images/image4.png",
       featured: false
     },
     {
@@ -42,7 +41,7 @@ const Services = () => {
       description: "Design personalizado que realça sua beleza natural",
       price: "A partir de R$ 35",
       duration: "30min - 45min",
-      image: "photo-1581091226825-a6a2a5aee158",
+      image: "/images/image5.png",
       featured: false
     },
     {
@@ -50,7 +49,7 @@ const Services = () => {
       description: "Experiência completa para o seu dia especial",
       price: "A partir de R$ 350",
       duration: "3h - 4h",
-      image: "photo-1721322800607-8c38375eef04",
+      image: "/images/image6.png",
       featured: true
     }
   ];
@@ -88,9 +87,13 @@ const Services = () => {
               
               <div className="relative overflow-hidden rounded-t-lg h-48">
                 <img 
-                  src={`https://images.unsplash.com/${service.image}?w=400&h=300&fit=crop`}
+                  src={service.image}  // ✔️ usa diretamente o caminho local
                   alt={service.title}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  onError={(e) => {
+                    // Opcional: caso falhe, mostra placeholder
+                    (e.currentTarget as HTMLImageElement).src = "/images/placeholder.png";
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
               </div>
