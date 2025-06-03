@@ -79,7 +79,7 @@ const About = () => {
           <div className="relative animate-fade-in">
             <div className="relative overflow-hidden rounded-2xl shadow-2xl">
               <img 
-                src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=600&h=700&fit=crop"
+                src="/images/image.png"
                 alt="Interior do salão Bella Vita"
                 className="w-full h-[500px] object-cover"
               />
